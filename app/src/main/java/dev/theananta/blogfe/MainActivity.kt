@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -38,16 +40,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             BlogFETheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                    LazyColumn(
+                        verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
                             .padding(innerPadding)
 
                     ) {
-                        SearchComp(
-                            modifier = Modifier.padding(innerPadding)
-                        )
+                        item {
+                            SearchComp(
+                                modifier = Modifier.padding(innerPadding)
+                            )
+                        }
 
                         val blogDataList = listOf(
                             BlogData(
@@ -67,9 +71,20 @@ class MainActivity : ComponentActivity() {
                                 "3 hours ago",
                                 "5 Essential Skills Every Data Scientist Needs in 2023",
                                 "Gain insights into the hottest skills in demand for data scientists, from machine learning to data visualization."
+                            ),                            BlogData(
+                                "Twitter",
+                                "3 hours ago",
+                                "5 Essential Skills Every Data Scientist Needs in 2023",
+                                "Gain insights into the hottest skills in demand for data scientists, from machine learning to data visualization."
+                            ),                            BlogData(
+                                "Twitter",
+                                "3 hours ago",
+                                "5 Essential Skills Every Data Scientist Needs in 2023",
+                                "Gain insights into the hottest skills in demand for data scientists, from machine learning to data visualization."
                             )
                         )
-                        blogDataList.forEach { blogData ->
+                        items(blogDataList) { blogData ->
+
                             BlogPreview(
                                 blogData = blogData, // Pass the BlogData object
                                 modifier = Modifier.fillMaxWidth()
